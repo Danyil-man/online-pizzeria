@@ -1,19 +1,23 @@
 import React from 'react';
-import Categories from './components/categories/Categories';
-import Header from './components/header/Header';
 
 
 function App() {
-
-
-
   return (
     <div className="wrapper">
-      <Header />
+
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories items={['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']} />
+            <div className="categories">
+              <ul>
+                <li className="active">Все</li>
+                <li>Мясные</li>
+                <li>Вегетарианская</li>
+                <li>Гриль</li>
+                <li>Острые</li>
+                <li>Закрытые</li>
+              </ul>
+            </div>
             <div className="sort">
               <div className="sort__label">
                 <svg
