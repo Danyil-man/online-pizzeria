@@ -10,6 +10,7 @@ function App() {
 
   return (
     <div className="wrapper">
+      <Header />
       <div className="content">
         <Routing />
       </div>
