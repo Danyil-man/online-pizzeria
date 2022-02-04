@@ -36,8 +36,8 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza }) => {
                         <li key={size}
                             onClick={() => onSelectSize(index)}
                             className={`${activeSize === index ? 'active' : ''}
-                            ${!pizza.sizes.includes(size) && 'disabled'}`}
-                        >{size} см.</li>)}
+                            ${!pizza.sizes.includes(index) && 'disabled'}`}
+                        >{size}</li>)}
                 </ul>
             </div>
             <div className="pizza-block__bottom">

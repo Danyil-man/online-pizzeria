@@ -5,15 +5,11 @@ type PizzaItemType = {
     pizza: PizzaType
 }
 const PizzaItem: FC<PizzaItemType> = ({ pizza }) => {
-    const [activeType, setActiveType] = useState(pizza.types[0])
-    const [activeSize, setActiveSize] = useState(pizza.sizes[0])
-    const avaiableType = ['тонкое', 'традиционное']
-    const avaliableSizes = [26, 30, 40]
-    const onSelectType = (index: number) => {
-        setActiveType(index)
-    }
-    const onSelectSize = (index: number) => {
-        setActiveSize(index)
+    const [activeType, setActiveType] = useState(0)
+    const types = ['тонкое', 'традиционное']
+
+    const onSelectType = () => {
+        setActiveType()
     }
     return (
         <div className="pizza-block">
@@ -25,19 +21,12 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza }) => {
             <h4 className="pizza-block__title">{pizza.name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    {avaiableType.map((type, index) => <li
-                        key={type}
-                        onClick={() => onSelectType(index)}
-                        className={`${activeType === index ? 'active' : ''}
-                        ${!pizza.types.includes(index) && 'disabled'}`} >{type}</li>)}
+                    {types.map((type, index) => <li className={activeType === index ? 'active' : ''} >{type}</li>)}
                 </ul>
                 <ul>
-                    {avaliableSizes.map((size, index) =>
-                        <li key={size}
-                            onClick={() => onSelectSize(index)}
-                            className={`${activeSize === index ? 'active' : ''}
-                            ${!pizza.sizes.includes(size) && 'disabled'}`}
-                        >{size} см.</li>)}
+                    <li className="active">26 см.</li>
+                    <li className="disabled">30 см.</li>
+                    <li>40 см.</li>
                 </ul>
             </div>
             <div className="pizza-block__bottom">

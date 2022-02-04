@@ -6,14 +6,10 @@ type PizzaItemType = {
 }
 const PizzaItem: FC<PizzaItemType> = ({ pizza }) => {
     const [activeType, setActiveType] = useState(pizza.types[0])
-    const [activeSize, setActiveSize] = useState(pizza.sizes[0])
     const avaiableType = ['тонкое', 'традиционное']
     const avaliableSizes = [26, 30, 40]
     const onSelectType = (index: number) => {
         setActiveType(index)
-    }
-    const onSelectSize = (index: number) => {
-        setActiveSize(index)
     }
     return (
         <div className="pizza-block">
@@ -32,12 +28,9 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza }) => {
                         ${!pizza.types.includes(index) && 'disabled'}`} >{type}</li>)}
                 </ul>
                 <ul>
-                    {avaliableSizes.map((size, index) =>
-                        <li key={size}
-                            onClick={() => onSelectSize(index)}
-                            className={`${activeSize === index ? 'active' : ''}
-                            ${!pizza.sizes.includes(size) && 'disabled'}`}
-                        >{size} см.</li>)}
+                    <li className="active">26 см.</li>
+                    <li className="disabled">30 см.</li>
+                    <li>40 см.</li>
                 </ul>
             </div>
             <div className="pizza-block__bottom">
