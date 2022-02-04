@@ -6,10 +6,10 @@ import Home from "../pages/home/Home";
 
 const Routing = () => {
     return (
-        <BrowserRouter >
+        <BrowserRouter>
             <Header />
             <Switch>
-                <Route exact path='/' component={Home} />
+                <Route path='/' component={Home} />
                 <Route exact path='/cart' component={Cart} />
             </Switch>
         </BrowserRouter>

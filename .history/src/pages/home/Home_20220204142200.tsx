@@ -11,6 +11,7 @@ const Home = () => {
             const response = await axios.get('http://localhost:3000/db.json')
             setPizzaItems(response.data)
         }
+        console.log(pizzaItems.map(pizza => pizza.pizzas.map(pizza => pizza.id)))
         FetchData()
     }, [])
     return (
@@ -21,20 +22,25 @@ const Home = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {/* {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)} */}
             </div>
         </div>
     )
 }
 
 export type PizzaType = {
+        {
     id: number,
-    imageUrl: string,
-    name: string,
-    types: Array<number>,
-    sizes: Array<number>,
-    price: number,
-    category: number,
-    rating: number
+        imageUrl: string,
+            name: string,
+                types: Array < number >,
+                    sizes: Array < number >,
+                        price: number,
+                            category: number,
+                                rating: number
+}
+    
+
+
 }
 export default Home;

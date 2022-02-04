@@ -6,7 +6,7 @@ import Home from "../pages/home/Home";
 
 const Routing = () => {
     return (
-        <BrowserRouter >
+        <BrowserRouter>
             <Header />
             <Switch>
                 <Route exact path='/' component={Home} />

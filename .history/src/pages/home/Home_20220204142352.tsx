@@ -11,6 +11,7 @@ const Home = () => {
             const response = await axios.get('http://localhost:3000/db.json')
             setPizzaItems(response.data)
         }
+        console.log(pizzaItems.map(pizza => pizza))
         FetchData()
     }, [])
     return (

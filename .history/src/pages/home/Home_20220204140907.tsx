@@ -36,5 +36,6 @@ export type PizzaType = {
     price: number,
     category: number,
     rating: number
+
 }
 export default Home;

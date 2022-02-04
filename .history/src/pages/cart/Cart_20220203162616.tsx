@@ -3,8 +3,7 @@ import React from "react";
 const Cart = () => {
     return (
         <>
-            <p>Корзина</p>
-        </>
+            <p>Корзина</p></>
     )
 }
 export default Cart

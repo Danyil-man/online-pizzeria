@@ -5,7 +5,7 @@ import PizzaItem from "../../components/pizzaItem/PizzaItem";
 import Sort from "../../components/sortPopUp/Sort";
 
 const Home = () => {
-    const [pizzaItems, setPizzaItems] = useState<Array<PizzaType>>([])
+    const [pizzaItems, setPizzaItems] = useState([])
     useEffect(() => {
         async function FetchData() {
             const response = await axios.get('http://localhost:3000/db.json')
@@ -13,6 +13,7 @@ const Home = () => {
         }
         FetchData()
     }, [])
+    console.log(pizzaItems.map(pizzas => pizzas.id))
     return (
         <div className="container">
             <div className="content__top">
@@ -21,20 +22,10 @@ const Home = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {pizzaItems.map(pizza => <PizzaItem pizza={pizza} />)}
             </div>
         </div>
     )
 }
 
-export type PizzaType = {
-    id: number,
-    imageUrl: string,
-    name: string,
-    types: Array<number>,
-    sizes: Array<number>,
-    price: number,
-    category: number,
-    rating: number
-}
 export default Home;

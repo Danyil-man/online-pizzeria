@@ -12,7 +12,9 @@ const Home = () => {
             setPizzaItems(response.data)
         }
         FetchData()
+
     }, [])
+    console.log(pizzaItems.map(pizza => console.log('PIZZA', pizza)))
     return (
         <div className="container">
             <div className="content__top">
@@ -36,5 +38,6 @@ export type PizzaType = {
     price: number,
     category: number,
     rating: number
+
 }
 export default Home;

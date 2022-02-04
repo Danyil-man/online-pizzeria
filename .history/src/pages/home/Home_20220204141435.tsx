@@ -9,8 +9,9 @@ const Home = () => {
     useEffect(() => {
         async function FetchData() {
             const response = await axios.get('http://localhost:3000/db.json')
-            setPizzaItems(response.data)
+            setPizzaItems([response.data])
         }
+        console.log(pizzaItems)
         FetchData()
     }, [])
     return (
@@ -21,7 +22,7 @@ const Home = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {/* {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)} */}
             </div>
         </div>
     )
@@ -36,5 +37,6 @@ export type PizzaType = {
     price: number,
     category: number,
     rating: number
+
 }
 export default Home;
