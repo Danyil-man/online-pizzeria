@@ -1,20 +1,24 @@
+import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem/PizzaItem";
 import Sort from "../../components/sortPopUp/Sort";
-import { getAllPizzas, PizzaType } from "../../store/reducers/pizzas";
+import { PizzaType } from "../../store/reducers/pizzas";
 import { AppStateType } from "../../store/reduxStore";
 
 type HomeType = {
     pizzas: Array<PizzaType>
-    getAllPizzas: () => void
 }
 
-const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
-
+const Home: FC<HomeType> = ({ pizzas }) => {
+    const [pizzaItems, setPizzaItems] = useState<Array<PizzaType>>([])
     useEffect(() => {
-        getAllPizzas()
+        async function FetchData() {
+            const response = await axios.get('http://localhost:3000/db.json')
+            setPizzaItems(response.data)
+        }
+        FetchData()
     }, [])
     return (
         <div className="container">
@@ -28,7 +32,7 @@ const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
             </div>
         </div>
     )
@@ -38,6 +42,4 @@ const mapStateToProps = (state: AppStateType) => ({
     pizzas: state.pizzas.items
 })
 
-export default connect(mapStateToProps, {
-    getAllPizzas
-})(Home);
+export default connect(mapStateToProps)(Home);

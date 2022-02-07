@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem/PizzaItem";
 import Sort from "../../components/sortPopUp/Sort";
-import { getAllPizzas, PizzaType } from "../../store/reducers/pizzas";
+import { PizzaType } from "../../store/reducers/pizzas";
 import { AppStateType } from "../../store/reduxStore";
 
 type HomeType = {
@@ -11,10 +11,12 @@ type HomeType = {
     getAllPizzas: () => void
 }
 
-const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
+const Home: FC<HomeType> = ({ pizzas }) => {
+    const [pizzaItems, setPizzaItems] = useState<Array<PizzaType>>([])
 
     useEffect(() => {
-        getAllPizzas()
+        console.log('mounted')
+        console.log(pizzas)
     }, [])
     return (
         <div className="container">
@@ -28,7 +30,7 @@ const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
             </div>
         </div>
     )

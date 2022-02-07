@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { FC, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Categories from "../../components/categories/Categories";
@@ -11,11 +12,15 @@ type HomeType = {
     getAllPizzas: () => void
 }
 
-const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
+const Home: FC<HomeType> = ({ pizzas }) => {
+    const [pizzaItems, setPizzaItems] = useState<Array<PizzaType>>([])
 
     useEffect(() => {
+        console.log('mounted')
         getAllPizzas()
+
     }, [])
+    console.log(pizzas)
     return (
         <div className="container">
             <div className="content__top">
@@ -28,7 +33,7 @@ const Home: FC<HomeType> = ({ pizzas, getAllPizzas }) => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {pizzaItems.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
             </div>
         </div>
     )

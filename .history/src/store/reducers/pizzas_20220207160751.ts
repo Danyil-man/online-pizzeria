@@ -1,7 +1,6 @@
 import axios from "axios"
 import React from "react"
-import { ThunkAction } from "redux-thunk"
-import { AppStateType, InfernActionType } from "../reduxStore"
+import { InfernActionType } from "../reduxStore"
 
 const SET_PIZZA = 'SET_PIZZA'
 
@@ -53,12 +52,11 @@ export const actions = {
 
 //                                               THUNK
 
-export const getAllPizzas = ():ThunkType => async (dispatch) => {
-    let response = await axios.get('http://localhost:3000/db.json')
+export const getAllPizzas = () => async (dispatch) => {
+    const response = await axios.get('http://localhost:3000/db.json')
     dispatch(actions.setPizzas(response.data))
 }
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 type ActionCreatorsType = InfernActionType<typeof actions>
 
 export default pizzasReducer
