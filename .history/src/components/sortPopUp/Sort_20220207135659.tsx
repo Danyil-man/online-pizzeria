@@ -59,7 +59,7 @@ const Sort: FC<SortType> = ({ items }) => {
                                 onClick={() => onSelectItem(index)}
                                 className={activeItem === index ? 'active' : ''}
                             >
-                                {item.name}
+                                {item.type}
                             </li>)
                     }
                 </ul>

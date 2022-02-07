@@ -11,7 +11,7 @@ type SortType = {
 
 const Sort: FC<SortType> = ({ items }) => {
     const [sort, setSort] = useState(false)
-    const [activeItem, setActiveItem] = useState(0)
+    const [activeItem, setActiveItem] = useState(items[0])
     const sortRef = useRef<any>()
 
     const showList = () => {
@@ -57,7 +57,7 @@ const Sort: FC<SortType> = ({ items }) => {
                         items.map((item, index) =>
                             <li key={item.type}
                                 onClick={() => onSelectItem(index)}
-                                className={activeItem === index ? 'active' : ''}
+                                className={activeItem === item ? 'active' : ''}
                             >
                                 {item.name}
                             </li>)

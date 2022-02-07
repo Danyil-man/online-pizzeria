@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem/PizzaItem";
 import Sort from "../../components/sortPopUp/Sort";
-import { PizzaType } from "../../store/reducers/pizzas";
 
 const Home = () => {
     const [pizzaItems, setPizzaItems] = useState<Array<PizzaType>>([])
@@ -32,4 +31,14 @@ const Home = () => {
     )
 }
 
+export type PizzaType = {
+    id: number,
+    imageUrl: string,
+    name: string,
+    types: Array<number>,
+    sizes: Array<number>,
+    price: number,
+    category: number,
+    rating: number
+}
 export default Home;

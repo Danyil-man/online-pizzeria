@@ -57,7 +57,7 @@ const Sort: FC<SortType> = ({ items }) => {
                         items.map((item, index) =>
                             <li key={item.type}
                                 onClick={() => onSelectItem(index)}
-                                className={activeItem === index ? 'active' : ''}
+                                className={activeItem === item ? 'active' : ''}
                             >
                                 {item.name}
                             </li>)

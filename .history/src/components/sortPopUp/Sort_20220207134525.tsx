@@ -6,12 +6,12 @@ type Categories = {
 }
 
 type SortType = {
-    items: Array<Categories>
+    items: Array<string>
 }
 
 const Sort: FC<SortType> = ({ items }) => {
     const [sort, setSort] = useState(false)
-    const [activeItem, setActiveItem] = useState(0)
+    const [activeItem, setActiveItem] = useState(items[0])
     const sortRef = useRef<any>()
 
     const showList = () => {
@@ -24,8 +24,8 @@ const Sort: FC<SortType> = ({ items }) => {
         }
     }
 
-    const onSelectItem = (index: number) => {
-        setActiveItem(index)
+    const onSelectItem = (name: string) => {
+        setActiveItem(name)
         setSort(false)
     }
 
@@ -54,12 +54,12 @@ const Sort: FC<SortType> = ({ items }) => {
             {sort && <div className="sort__popup">
                 <ul>
                     {
-                        items.map((item, index) =>
-                            <li key={item.type}
-                                onClick={() => onSelectItem(index)}
-                                className={activeItem === index ? 'active' : ''}
+                        items.map(item =>
+                            <li key={item}
+                                onClick={() => onSelectItem(item)}
+                                className={activeItem === item ? 'active' : ''}
                             >
-                                {item.name}
+                                {item}
                             </li>)
                     }
                 </ul>
