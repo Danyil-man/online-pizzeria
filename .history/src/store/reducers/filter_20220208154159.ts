@@ -53,9 +53,8 @@ type ActionCreatorsType = InfernActionType<typeof actions>
 
 //                                      THUNK
 
-export const setItemCategory = (index:number):ThunkType => async (dispatch) => {
-    dispatch(actions.setCategory(index))
-    
+export const setItemCategory = ():ThunkType => async (dispatch) => {
+
 }
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 export default filterReducer

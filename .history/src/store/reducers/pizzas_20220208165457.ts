@@ -54,9 +54,9 @@ export const actions = {
 //                                               THUNK
 
 export const getAllPizzas = ():ThunkType => async (dispatch) => {
-    const {data} = await axios.get('http://localhost:3001/pizzas')
-    dispatch(actions.setPizzas(data))
-    
+    let response = await axios.get('http://localhost:3001/db.json/pizzas')
+    dispatch(actions.setPizzas(response.data))
+    debugger
 }
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>

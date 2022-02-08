@@ -49,7 +49,7 @@ const Sort: FC<SortType> = ({ items }) => {
                         fill="#2C2C2C"
                     />
                 </svg>
-                <b>Sorting by:</b>
+                <b>Сортировка по:</b>
                 <span onClick={showList} >{activeSort}</span>
             </div>
             {sort && <div className="sort__popup">

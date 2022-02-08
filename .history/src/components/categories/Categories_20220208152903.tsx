@@ -2,24 +2,19 @@ import React, { FC, useState } from "react";
 
 type CategoriesType = {
     items: Array<string>
-    onSelectItem: (index: number) => void
 }
 
-const Categories: FC<CategoriesType> = ({ items, onSelectItem }) => {
-    const [activeItem, setActiveItem] = useState(null)
+const Categories: FC<CategoriesType> = ({ items }) => {
+    const [activeItem, setActiveItem] = useState(null || Number)
 
-    const selectItem = (index: any) => {
-        setActiveItem(index)
-        onSelectItem(index)
-    }
     return (
         <div className="categories">
             <ul>
                 <li className={activeItem === null ? 'active' : ''}
-                    onClick={() => selectItem(null)}
+                    onClick={() => setActiveItem(null || 0)}
                 >Все</li>
                 {items && items.map((item, index) =>
-                    <li onClick={() => selectItem(index)}
+                    <li onClick={() => setActiveItem(index)}
                         className={activeItem === index ? 'active' : ''}
                         key={item} >{item}</li>)}
             </ul>

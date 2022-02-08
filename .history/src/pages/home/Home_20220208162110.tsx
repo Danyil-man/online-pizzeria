@@ -12,11 +12,6 @@ type HomeType = {
 }
 
 const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
-const sortItems = [
-    { name: 'popular', type: 'popular' },
-    { name: 'price', type: 'price' },
-    { name: 'alphabet', type: 'alphabet' }
-]
 
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
@@ -26,9 +21,9 @@ const Home: FC<HomeType> = () => {
         }
     })
 
-    const onSelectCategory = (index: number) => {
+    const onSelectCategory = useCallback((index: number) => {
         dispatch(setItemCategory(index))
-    }
+    }, [])
 
     useEffect(() => {
         dispatch(getAllPizzas())
@@ -41,7 +36,11 @@ const Home: FC<HomeType> = () => {
                     items={categoryNames}
                     onSelectItem={onSelectCategory}
                 />
-                <Sort items={sortItems} />
+                <Sort items={[
+                    { name: 'popular', type: 'popular' },
+                    { name: 'price', type: 'price' },
+                    { name: 'alphabet', type: 'alphabet' }
+                ]} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">

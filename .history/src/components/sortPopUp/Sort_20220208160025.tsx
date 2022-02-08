@@ -11,9 +11,8 @@ type SortType = {
 
 const Sort: FC<SortType> = ({ items }) => {
     const [sort, setSort] = useState(false)
-    const [activeItem, setActiveItem] = useState(0)
+    const [activeItem, setActiveItem] = useState(items[0])
     const sortRef = useRef<any>()
-    const activeSort = items[activeItem].name
 
     const showList = () => {
         setSort(!sort)
@@ -49,8 +48,8 @@ const Sort: FC<SortType> = ({ items }) => {
                         fill="#2C2C2C"
                     />
                 </svg>
-                <b>Sorting by:</b>
-                <span onClick={showList} >{activeSort}</span>
+                <b>Сортировка по:</b>
+                <span onClick={showList} >{activeItem}</span>
             </div>
             {sort && <div className="sort__popup">
                 <ul>

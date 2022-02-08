@@ -2,13 +2,12 @@ import React, { FC, useState } from "react";
 
 type CategoriesType = {
     items: Array<string>
-    onSelectItem: (index: number) => void
 }
 
-const Categories: FC<CategoriesType> = ({ items, onSelectItem }) => {
+const Categories: FC<CategoriesType> = ({ items }) => {
     const [activeItem, setActiveItem] = useState(null)
 
-    const selectItem = (index: any) => {
+    const onSelectItem = (index: any) => {
         setActiveItem(index)
         onSelectItem(index)
     }
@@ -16,10 +15,10 @@ const Categories: FC<CategoriesType> = ({ items, onSelectItem }) => {
         <div className="categories">
             <ul>
                 <li className={activeItem === null ? 'active' : ''}
-                    onClick={() => selectItem(null)}
+                    onClick={() => setActiveItem(null)}
                 >Все</li>
                 {items && items.map((item, index) =>
-                    <li onClick={() => selectItem(index)}
+                    <li onClick={() => onSelectItem(index)}
                         className={activeItem === index ? 'active' : ''}
                         key={item} >{item}</li>)}
             </ul>
