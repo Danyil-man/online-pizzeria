@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem/PizzaItem";
 import Sort from "../../components/sortPopUp/Sort";
@@ -8,20 +8,19 @@ import { AppStateType } from "../../store/reduxStore";
 
 type HomeType = {
     pizzas: Array<PizzaType>
+    getAllPizzas: () => void
 }
 
 const Home: FC<HomeType> = () => {
-    const dispatch = useDispatch()
-    const { pizzas } = useSelector((state: AppStateType) => {
+    const state = useSelector((state: AppStateType) => {
         return {
             pizzas: state.pizzas.items
         }
     })
-    console.log(pizzas)
+    console.log(state)
     useEffect(() => {
-        dispatch(getAllPizzas())
+        getAllPizzas()
     }, [])
-
     return (
         <div className="container">
             <div className="content__top">
@@ -40,9 +39,11 @@ const Home: FC<HomeType> = () => {
     )
 }
 
-// const mapStateToProps = (state: AppStateType) => ({
-//     pizzas: state.pizzas.items,
-//     filters: state.filter
-// })
+const mapStateToProps = (state: AppStateType) => ({
+    pizzas: state.pizzas.items,
+    filters: state.filter
+})
 
-export default Home;
+export default connect(mapStateToProps, {
+    getAllPizzas
+})(Home);

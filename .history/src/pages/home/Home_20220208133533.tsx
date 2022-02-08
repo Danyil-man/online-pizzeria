@@ -12,12 +12,12 @@ type HomeType = {
 
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
-    const { pizzas } = useSelector((state: AppStateType) => {
+    const state = useSelector((state: AppStateType) => {
         return {
             pizzas: state.pizzas.items
         }
     })
-    console.log(pizzas)
+    console.log(state)
     useEffect(() => {
         dispatch(getAllPizzas())
     }, [])
@@ -34,7 +34,7 @@ const Home: FC<HomeType> = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-                {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                {/* {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)} */}
             </div>
         </div>
     )
