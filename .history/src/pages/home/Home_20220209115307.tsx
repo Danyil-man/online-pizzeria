@@ -2,7 +2,6 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem";
-import PizzaLoader from "../../components/pizzaItem/PizzaLoader";
 import Sort from "../../components/sortPopUp/Sort";
 import { setItemCategory } from "../../store/reducers/filter";
 import { getAllPizzas, PizzaType } from "../../store/reducers/pizzas";
@@ -21,8 +20,11 @@ const sortItems = [
 
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
-    const pizzas = useSelector((state: AppStateType) => state.pizzas.items)
-    const isLoaded = useSelector((state: AppStateType) => state.pizzas.isLoaded)
+    const { pizzas } = useSelector((state: AppStateType) => {
+        return {
+            pizzas: state.pizzas.items
+        }
+    })
 
     const onSelectCategory = (index: number) => {
         dispatch(setItemCategory(index))
@@ -33,25 +35,19 @@ const Home: FC<HomeType> = () => {
     }, [])
 
     return (
-        <>
-            <div className="container">
-                <div className="content__top">
-                    <Categories
-                        items={categoryNames}
-                        onSelectItem={onSelectCategory}
-                    />
-                    <Sort items={sortItems} />
-                </div>
-                <h2 className="content__title">Все пиццы</h2>
-                <div className="content__items">
-                    {isLoaded ?
-                        pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)
-                        :
-                        Array(12).fill(<PizzaLoader />)
-                    }
-                </div>
+        <div className="container">
+            <div className="content__top">
+                <Categories
+                    items={categoryNames}
+                    onSelectItem={onSelectCategory}
+                />
+                <Sort items={sortItems} />
             </div>
-        </>
+            <h2 className="content__title">Все пиццы</h2>
+            <div className="content__items">
+                {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+            </div>
+        </div>
     )
 }
 

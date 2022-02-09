@@ -45,7 +45,9 @@ const Home: FC<HomeType> = () => {
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
                     {isLoaded ?
+
                         pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)
+
                         :
                         Array(12).fill(<PizzaLoader />)
                     }

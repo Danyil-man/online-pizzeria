@@ -22,7 +22,7 @@ const sortItems = [
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
     const pizzas = useSelector((state: AppStateType) => state.pizzas.items)
-    const isLoaded = useSelector((state: AppStateType) => state.pizzas.isLoaded)
+    const isLoading = useSelector((state: AppStateType) => state.pizzas.isLoading)
 
     const onSelectCategory = (index: number) => {
         dispatch(setItemCategory(index))
@@ -44,10 +44,10 @@ const Home: FC<HomeType> = () => {
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
-                    {isLoaded ?
-                        pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)
-                        :
-                        Array(12).fill(<PizzaLoader />)
+                    {isLoading ? [...Array(10).fill(<PizzaLoader />)] :
+                        <>
+                            {pizzas.map(pizza => <PizzaItem key={pizza.id} pizza={pizza} />)}
+                        </>
                     }
                 </div>
             </div>

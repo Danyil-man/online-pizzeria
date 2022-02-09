@@ -18,12 +18,12 @@ export type PizzaType = {
 
 type initialStateType = {
     items: Array<PizzaType>
-    isLoaded: boolean
+    isLoading: boolean
 }
 
 const initialState:initialStateType = {
     items: [],
-    isLoaded: false
+    isLoading: false
 }
 
 //                                              REDUCER
@@ -33,7 +33,7 @@ const pizzasReducer = (state=initialState, action:ActionCreatorsType):initialSta
             return{
                 ...state,
                 items: action.items,
-                isLoaded:true
+                isLoading:true
             }
 
         default:
