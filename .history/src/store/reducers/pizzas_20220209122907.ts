@@ -63,9 +63,9 @@ export const actions = {
 
 //                                               THUNK
 
-export const getAllPizzas = (sortBy:string, category:null | number):ThunkType => async (dispatch) => {
+export const getAllPizzas = ():ThunkType => async (dispatch) => {
     dispatch(actions.setLoaded(false))
-    const {data} = await axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}`: ''}&_sort=${sortBy}&_order=desc`)
+    const {data} = await axios.get('http://localhost:3001/pizzas')
     dispatch(actions.setPizzas(data))
     
 }

@@ -39,7 +39,7 @@ const pizzasReducer = (state=initialState, action:ActionCreatorsType):initialSta
         case SET_LOADED:
             return{
                 ...state,
-                isLoaded: action.isLoaded
+                isLoaded: action
             }
 
         default:
@@ -63,9 +63,8 @@ export const actions = {
 
 //                                               THUNK
 
-export const getAllPizzas = (sortBy:string, category:null | number):ThunkType => async (dispatch) => {
-    dispatch(actions.setLoaded(false))
-    const {data} = await axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}`: ''}&_sort=${sortBy}&_order=desc`)
+export const getAllPizzas = ():ThunkType => async (dispatch) => {
+    const {data} = await axios.get('http://localhost:3001/pizzas')
     dispatch(actions.setPizzas(data))
     
 }

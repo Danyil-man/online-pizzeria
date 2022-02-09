@@ -8,7 +8,7 @@ type Categories = {
 type SortType = {
     items: Array<Categories>
     activeSort: string
-    setActiveItem: (type: string) => void
+    setActiveItem: () => void
 }
 
 const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {

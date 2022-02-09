@@ -8,13 +8,12 @@ type Categories = {
 type SortType = {
     items: Array<Categories>
     activeSort: string
-    setActiveItem: (type: string) => void
 }
 
-const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
+const Sort: FC<SortType> = ({ items, activeSort }) => {
     const [sort, setSort] = useState(false)
     const sortRef = useRef<any>()
-    const activeLabel = items.find(obj => obj.type === activeSort)?.name
+    const activeLabel = items[activeSort].name
 
     const showList = () => {
         setSort(!sort)
@@ -26,7 +25,7 @@ const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
         }
     }
 
-    const onSelectItem = (index: any) => {
+    const onSelectItem = (index: number) => {
         setActiveItem(index)
         setSort(false)
     }
@@ -58,8 +57,8 @@ const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
                     {
                         items.map((item, index) =>
                             <li key={item.type}
-                                onClick={() => onSelectItem(item.type)}
-                                className={activeSort === item.type ? 'active' : ''}
+                                onClick={() => onSelectItem(index)}
+                                className={activeSort === index ? 'active' : ''}
                             >
                                 {item.name}
                             </li>)

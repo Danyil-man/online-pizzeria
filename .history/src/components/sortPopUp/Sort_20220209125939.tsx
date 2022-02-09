@@ -8,7 +8,7 @@ type Categories = {
 type SortType = {
     items: Array<Categories>
     activeSort: string
-    setActiveItem: (type: string) => void
+    setActiveItem: () => void
 }
 
 const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
@@ -58,8 +58,8 @@ const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
                     {
                         items.map((item, index) =>
                             <li key={item.type}
-                                onClick={() => onSelectItem(item.type)}
-                                className={activeSort === item.type ? 'active' : ''}
+                                onClick={() => onSelectItem(index)}
+                                className={activeSort === index ? 'active' : ''}
                             >
                                 {item.name}
                             </li>)

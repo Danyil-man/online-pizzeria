@@ -14,9 +14,9 @@ type HomeType = {
 
 const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 const sortItems = [
-    { name: 'popular', type: 'popular', order: 'desc' },
-    { name: 'price', type: 'price', order: 'desc' },
-    { name: 'alphabet', type: 'name', order: 'asc' }
+    { name: 'popular', type: 'popular' },
+    { name: 'price', type: 'price' },
+    { name: 'alphabet', type: 'name' }
 ]
 
 const Home: FC<HomeType> = () => {

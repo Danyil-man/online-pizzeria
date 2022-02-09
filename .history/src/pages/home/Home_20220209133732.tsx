@@ -48,7 +48,7 @@ const Home: FC<HomeType> = () => {
                     />
                     <Sort
                         items={sortItems}
-                        activeSort={sortBy}
+                        activeSort={sortBy.type}
                         setActiveItem={onSelectSort}
                     />
                 </div>

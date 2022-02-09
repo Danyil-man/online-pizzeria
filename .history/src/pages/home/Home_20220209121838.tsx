@@ -4,7 +4,7 @@ import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem";
 import PizzaLoader from "../../components/pizzaItem/PizzaLoader";
 import Sort from "../../components/sortPopUp/Sort";
-import { setItemCategory, setSortBy } from "../../store/reducers/filter";
+import { setItemCategory } from "../../store/reducers/filter";
 import { getAllPizzas, PizzaType } from "../../store/reducers/pizzas";
 import { AppStateType } from "../../store/reduxStore";
 
@@ -14,9 +14,9 @@ type HomeType = {
 
 const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 const sortItems = [
-    { name: 'popular', type: 'popular', order: 'desc' },
-    { name: 'price', type: 'price', order: 'desc' },
-    { name: 'alphabet', type: 'name', order: 'asc' }
+    { name: 'popular', type: 'popular' },
+    { name: 'price', type: 'price' },
+    { name: 'alphabet', type: 'alphabet' }
 ]
 
 const Home: FC<HomeType> = () => {
@@ -29,28 +29,19 @@ const Home: FC<HomeType> = () => {
         dispatch(setItemCategory(index))
     }
 
-    const onSelectSort = (type: string) => {
-        dispatch(setSortBy(type))
-    }
-
     useEffect(() => {
-        dispatch(getAllPizzas(sortBy, category))
-    }, [category, sortBy])
+        dispatch(getAllPizzas())
+    }, [])
 
     return (
         <>
             <div className="container">
                 <div className="content__top">
                     <Categories
-                        activeCategory={category}
                         items={categoryNames}
                         onSelectItem={onSelectCategory}
                     />
-                    <Sort
-                        items={sortItems}
-                        activeSort={sortBy}
-                        setActiveItem={onSelectSort}
-                    />
+                    <Sort items={sortItems} />
                 </div>
                 <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">

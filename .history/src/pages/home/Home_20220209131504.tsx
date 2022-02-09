@@ -14,9 +14,9 @@ type HomeType = {
 
 const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 const sortItems = [
-    { name: 'popular', type: 'popular', order: 'desc' },
-    { name: 'price', type: 'price', order: 'desc' },
-    { name: 'alphabet', type: 'name', order: 'asc' }
+    { name: 'popular', type: 'popular' },
+    { name: 'price', type: 'price' },
+    { name: 'alphabet', type: 'alphabet' }
 ]
 
 const Home: FC<HomeType> = () => {
@@ -34,7 +34,7 @@ const Home: FC<HomeType> = () => {
     }
 
     useEffect(() => {
-        dispatch(getAllPizzas(sortBy, category))
+        dispatch(getAllPizzas(category, sortBy))
     }, [category, sortBy])
 
     return (

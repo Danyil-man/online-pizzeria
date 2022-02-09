@@ -12,7 +12,7 @@ type initialStateType = {
 }
 
 const initialState:initialStateType = {
-    category: null,
+    category: 2,
     sortBy: 'popular'
 }
 
@@ -55,11 +55,7 @@ type ActionCreatorsType = InfernActionType<typeof actions>
 
 export const setItemCategory = (index:number):ThunkType => async (dispatch) => {
     dispatch(actions.setCategory(index))
+    
 }
-
-export const setSortBy = (type:string):ThunkType => async (dispatch) => {
-    dispatch(actions.setSort(type))
-}
-
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 export default filterReducer

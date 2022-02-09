@@ -6,14 +6,22 @@ import { AppStateType, InfernActionType } from "../reduxStore"
 const SET_SORT = 'SET_SORT'
 const SET_CATEGORY = 'SET_CATEGORY'
 
+type sortType = {
+    type: string
+    order: string
+}
+
 type initialStateType = {
     category: null | number
-    sortBy: string
+    sortBy: sortType
 }
 
 const initialState:initialStateType = {
     category: null,
-    sortBy: 'popular'
+    sortBy: {
+        type: 'popular',
+        order: 'desc'
+    }
 }
 
 //                                              REDUCER

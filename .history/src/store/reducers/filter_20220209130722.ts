@@ -59,6 +59,7 @@ export const setItemCategory = (index:number):ThunkType => async (dispatch) => {
 
 export const setSortBy = (type:string):ThunkType => async (dispatch) => {
     dispatch(actions.setSort(type))
+    debugger
 }
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>

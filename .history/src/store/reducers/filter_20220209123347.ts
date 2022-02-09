@@ -7,7 +7,7 @@ const SET_SORT = 'SET_SORT'
 const SET_CATEGORY = 'SET_CATEGORY'
 
 type initialStateType = {
-    category: null | number
+    category: null
     sortBy: string
 }
 
@@ -55,11 +55,7 @@ type ActionCreatorsType = InfernActionType<typeof actions>
 
 export const setItemCategory = (index:number):ThunkType => async (dispatch) => {
     dispatch(actions.setCategory(index))
+    
 }
-
-export const setSortBy = (type:string):ThunkType => async (dispatch) => {
-    dispatch(actions.setSort(type))
-}
-
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 export default filterReducer
