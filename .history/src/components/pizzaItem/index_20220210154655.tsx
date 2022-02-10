@@ -77,7 +77,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {cartCount && <i>{cartCount}</i>}
+                    <i>{cartCount && cartCount}</i>
                 </button>
             </div>
         </div>

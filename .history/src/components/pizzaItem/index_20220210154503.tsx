@@ -9,7 +9,7 @@ type PizzaItemType = {
     cartCount: number
     onAddPizza: (obj: PizzaCartType) => void
 }
-const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
+const PizzaItem: FC<PizzaItemType> = ({ pizza, onAddPizza }) => {
     const [activeType, setActiveType] = useState(pizza.types[0])
     const [activeSize, setActiveSize] = useState(0)
 
@@ -77,7 +77,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {cartCount && <i>{cartCount}</i>}
+                    <i>2</i>
                 </button>
             </div>
         </div>

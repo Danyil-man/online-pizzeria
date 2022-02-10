@@ -6,10 +6,10 @@ import { AppStateType } from "../../store/reduxStore";
 
 const Button = () => {
     const { totalCount, totalPrice } = useSelector((state: AppStateType) => state.cart)
-    console.log(totalCount)
+
     return (
         <div className="button button--cart">
-            <span>{totalPrice} ₽</span>
+            <span>520 ₽</span>
             <div className="button__delimiter"></div>
             <svg
                 width="18"
@@ -40,7 +40,7 @@ const Button = () => {
                     stroke-linejoin="round"
                 />
             </svg>
-            <span>{totalCount}</span>
+            <span>3</span>
         </div>
     )
 }

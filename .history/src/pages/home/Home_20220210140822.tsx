@@ -4,7 +4,7 @@ import Categories from "../../components/categories/Categories";
 import PizzaItem from "../../components/pizzaItem";
 import PizzaLoader from "../../components/pizzaItem/PizzaLoader";
 import Sort from "../../components/sortPopUp/Sort";
-import { addPizzaToCart, PizzaCartType } from "../../store/reducers/cart";
+import { PizzaCartType } from "../../store/reducers/cart";
 import { setItemCategory, setSortBy } from "../../store/reducers/filter";
 import { getAllPizzas, PizzaType } from "../../store/reducers/pizzas";
 import { AppStateType } from "../../store/reduxStore";
@@ -23,7 +23,6 @@ const sortItems = [
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
     const pizzas = useSelector((state: AppStateType) => state.pizzas.items)
-    const cartItems = useSelector((state: AppStateType) => state.cart.items)
     const isLoaded = useSelector((state: AppStateType) => state.pizzas.isLoaded)
     const { category, sortBy } = useSelector((state: AppStateType) => state.filter)
 
@@ -35,8 +34,8 @@ const Home: FC<HomeType> = () => {
         dispatch(setSortBy(type))
     }
 
-    const onAddPizza = (obj: PizzaCartType) => {
-        dispatch(addPizzaToCart(obj))
+    const addPizzaToCart = (obj: PizzaCartType) => {
+
     }
     useEffect(() => {
         dispatch(getAllPizzas(sortBy, category))
@@ -63,9 +62,7 @@ const Home: FC<HomeType> = () => {
                         pizzas.map(pizza => <PizzaItem
                             key={pizza.id}
                             pizza={pizza}
-                            //@ts-ignore
-                            cartCount={cartItems[pizza.id] && cartItems[pizza.id].length}
-                            onAddPizza={onAddPizza}
+                            onAddPizza={addPizzaToCart}
                         />)
                         :
                         Array(12).fill(<PizzaLoader />)

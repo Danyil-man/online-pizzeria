@@ -6,10 +6,9 @@ import Button from "../button/Button";
 
 type PizzaItemType = {
     pizza: PizzaType
-    cartCount: number
     onAddPizza: (obj: PizzaCartType) => void
 }
-const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
+const PizzaItem: FC<PizzaItemType> = ({ pizza, onAddPizza }) => {
     const [activeType, setActiveType] = useState(pizza.types[0])
     const [activeSize, setActiveSize] = useState(0)
 
@@ -29,8 +28,8 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
             name: pizza.name,
             imageUrl: pizza.imageUrl,
             price: pizza.price,
-            size: avaliableSizes[activeSize],
-            type: avaiableType[activeType]
+            size: activeSize[activeSize],
+            type: activeType[activeType]
         }
         onAddPizza(obj)
     }
@@ -77,7 +76,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {cartCount && <i>{cartCount}</i>}
+                    <i>2</i>
                 </button>
             </div>
         </div>

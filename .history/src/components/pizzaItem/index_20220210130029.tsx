@@ -1,17 +1,15 @@
 import React, { FC, useState } from "react";
-import { PizzaCartType } from "../../store/reducers/cart";
 import { PizzaType } from "../../store/reducers/pizzas";
 import Button from "../button/Button";
 
 
 type PizzaItemType = {
     pizza: PizzaType
-    cartCount: number
-    onAddPizza: (obj: PizzaCartType) => void
+    onAddPizza: (obj: PizzaType) => void
 }
-const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
+const PizzaItem: FC<PizzaItemType> = ({ pizza, onAddPizza }) => {
     const [activeType, setActiveType] = useState(pizza.types[0])
-    const [activeSize, setActiveSize] = useState(0)
+    const [activeSize, setActiveSize] = useState(pizza.sizes[0])
 
     const avaiableType = ['тонкое', 'традиционное']
     const avaliableSizes = [26, 30, 40]
@@ -23,17 +21,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
     const onSelectSize = (index: number) => {
         setActiveSize(index)
     }
-    const addPiza = () => {
-        const obj = {
-            id: pizza.id,
-            name: pizza.name,
-            imageUrl: pizza.imageUrl,
-            price: pizza.price,
-            size: avaliableSizes[activeSize],
-            type: avaiableType[activeType]
-        }
-        onAddPizza(obj)
-    }
+
 
     return (
 
@@ -63,7 +51,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {pizza.price} ₽</div>
-                <button onClick={addPiza} className="button button--outline button--add">
+                <button onAddPizza={() => onAddPizza(pizza)} className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -77,7 +65,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {cartCount && <i>{cartCount}</i>}
+                    <i>2</i>
                 </button>
             </div>
         </div>

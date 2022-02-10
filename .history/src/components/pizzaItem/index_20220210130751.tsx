@@ -1,17 +1,15 @@
 import React, { FC, useState } from "react";
-import { PizzaCartType } from "../../store/reducers/cart";
 import { PizzaType } from "../../store/reducers/pizzas";
 import Button from "../button/Button";
 
 
 type PizzaItemType = {
     pizza: PizzaType
-    cartCount: number
-    onAddPizza: (obj: PizzaCartType) => void
+    onAddPizza: (obj: PizzaType) => void
 }
-const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
+const PizzaItem: FC<PizzaItemType> = ({ pizza, onAddPizza }) => {
     const [activeType, setActiveType] = useState(pizza.types[0])
-    const [activeSize, setActiveSize] = useState(0)
+    const [activeSize, setActiveSize] = useState(pizza.sizes[0])
 
     const avaiableType = ['тонкое', 'традиционное']
     const avaliableSizes = [26, 30, 40]
@@ -29,10 +27,10 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
             name: pizza.name,
             imageUrl: pizza.imageUrl,
             price: pizza.price,
-            size: avaliableSizes[activeSize],
-            type: avaiableType[activeType]
+            size: activeSize,
+            type: activeType
         }
-        onAddPizza(obj)
+        onAddPizza(pizza)
     }
 
     return (
@@ -77,7 +75,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    {cartCount && <i>{cartCount}</i>}
+                    <i>2</i>
                 </button>
             </div>
         </div>

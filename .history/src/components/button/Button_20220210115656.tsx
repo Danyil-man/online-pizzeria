@@ -6,7 +6,7 @@ import { AppStateType } from "../../store/reduxStore";
 
 const Button = () => {
     const { totalCount, totalPrice } = useSelector((state: AppStateType) => state.cart)
-    console.log(totalCount)
+
     return (
         <div className="button button--cart">
             <span>{totalPrice} ₽</span>

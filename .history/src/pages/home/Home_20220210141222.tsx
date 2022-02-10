@@ -23,7 +23,6 @@ const sortItems = [
 const Home: FC<HomeType> = () => {
     const dispatch = useDispatch()
     const pizzas = useSelector((state: AppStateType) => state.pizzas.items)
-    const cartItems = useSelector((state: AppStateType) => state.cart.items)
     const isLoaded = useSelector((state: AppStateType) => state.pizzas.isLoaded)
     const { category, sortBy } = useSelector((state: AppStateType) => state.filter)
 
@@ -63,8 +62,6 @@ const Home: FC<HomeType> = () => {
                         pizzas.map(pizza => <PizzaItem
                             key={pizza.id}
                             pizza={pizza}
-                            //@ts-ignore
-                            cartCount={cartItems[pizza.id] && cartItems[pizza.id].length}
                             onAddPizza={onAddPizza}
                         />)
                         :
