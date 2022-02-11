@@ -91,7 +91,7 @@ export const actions = {
     clearCart: () => ({
         type: CLEAR_CART,
     } as const),
-    removeCartItem: () => ({
+    retmoveCartItem: () => ({
         type: REMOVE_CART_ITEM
     } as const)
 }

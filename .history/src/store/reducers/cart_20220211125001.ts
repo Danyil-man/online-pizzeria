@@ -4,7 +4,6 @@ import { AppStateType, InfernActionType } from "../reduxStore"
 
 const ADD_PIZZA_CART = "ADD_PIZZA_CART"
 const CLEAR_CART = "CLEAR_CART"
-const REMOVE_CART_ITEM = "REMOVE_CART_ITEM"
 
 export type PizzaType = {
     id: number,
@@ -72,9 +71,7 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
         case CLEAR_CART:
             return{
                 ...state,
-                items: {},
-                totalCount: 0,
-                totalPrice: 0
+                items: {}
             }
         default:
             return state
@@ -90,9 +87,6 @@ export const actions = {
     } as const),
     clearCart: () => ({
         type: CLEAR_CART,
-    } as const),
-    removeCartItem: () => ({
-        type: REMOVE_CART_ITEM
     } as const)
 }
 
@@ -102,9 +96,6 @@ export const addPizzaToCart = (pizzaObj: PizzaCartType):ThunkType => async (disp
     dispatch(actions.setPizzaCart(pizzaObj))
 }
 
-export const onClearCart = ():ThunkType => async (dispatch) => {
-    dispatch(actions.clearCart())
-}
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 type ActionCreatorsType = InfernActionType<typeof actions>

@@ -3,8 +3,6 @@ import { ThunkAction } from "redux-thunk"
 import { AppStateType, InfernActionType } from "../reduxStore"
 
 const ADD_PIZZA_CART = "ADD_PIZZA_CART"
-const CLEAR_CART = "CLEAR_CART"
-const REMOVE_CART_ITEM = "REMOVE_CART_ITEM"
 
 export type PizzaType = {
     id: number,
@@ -47,20 +45,16 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
             const currentPizzas = !state.items[action.pizzaObj.id]
             ? [action.pizzaObj]
             //@ts-ignore
-            : [...state.items[action.pizzaObj.id].items, action.pizzaObj]
+            : [...state.items[action.pizzaObj.id], action.pizzaObj]
             const newItems = {
                 ...state.items,
-                [action.pizzaObj.id]: {
-                    items: currentPizzas,
-                    totalCartPrice: currentPizzas.reduce((sum, obj:PizzaCartType)=>obj.price + sum,0)
-                }
+                
+                [action.pizzaObj.id]: 
             }
             //@ts-ignore
-            const items =  Object.values(newItems).map(obj => obj.items)
-            //@ts-ignore
-            const pizzaArray = [].concat.apply([], items)
+            const pizzaArray = [].concat.apply([], Object.values(newItems))
             const price = pizzaArray.reduce( (sum, obj:PizzaCartType) => obj.price + sum, 0)
-            
+            console.log(pizzaArray)
             return {
                 ...state,
                 items: newItems,
@@ -68,14 +62,6 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
                 totalPrice: price
             }
         }
-
-        case CLEAR_CART:
-            return{
-                ...state,
-                items: {},
-                totalCount: 0,
-                totalPrice: 0
-            }
         default:
             return state
     }
@@ -87,13 +73,7 @@ export const actions = {
     setPizzaCart: (pizzaObj: PizzaCartType)=>({
         type: ADD_PIZZA_CART,
         pizzaObj
-    } as const),
-    clearCart: () => ({
-        type: CLEAR_CART,
-    } as const),
-    removeCartItem: () => ({
-        type: REMOVE_CART_ITEM
-    } as const)
+    })
 }
 
 
@@ -102,9 +82,6 @@ export const addPizzaToCart = (pizzaObj: PizzaCartType):ThunkType => async (disp
     dispatch(actions.setPizzaCart(pizzaObj))
 }
 
-export const onClearCart = ():ThunkType => async (dispatch) => {
-    dispatch(actions.clearCart())
-}
 
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 type ActionCreatorsType = InfernActionType<typeof actions>

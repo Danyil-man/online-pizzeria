@@ -64,7 +64,7 @@ const Home: FC<HomeType> = () => {
                             key={pizza.id}
                             pizza={pizza}
                             //@ts-ignore
-                            cartCount={cartItems[pizza.id] && cartItems[pizza.id].items.length}
+                            cartCount={cartItems[pizza.id] && cartItems[pizza.id].length}
                             onAddPizza={onAddPizza}
                         />)
                         :

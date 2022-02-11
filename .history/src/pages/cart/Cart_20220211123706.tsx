@@ -1,28 +1,19 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { onClearCart } from "../../store/reducers/cart";
+import { useSelector } from "react-redux";
 import { AppStateType } from "../../store/reduxStore";
 import CartItem from "./cartItem/CartItem";
-import emptyCartImg from '../../assets/img/empty-cart.png'
-import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const dispatch = useDispatch()
-
     const { totalCount, totalPrice, items } =
         useSelector((state: AppStateType) => state.cart)
     const cartPizzas = Object.keys(items).map(key => {
         //@ts-ignore
         return items[key].items[0]
     })
-
-    const clearCart = () => {
-        if (window.confirm('Are you sure you want to clear your cart?'))
-            dispatch(onClearCart())
-    }
     return (
         <div className="container container--cart">
-            {totalCount ? <div className="cart">
+
+            <div className="cart">
                 <div className="cart__top">
                     <h2 className="content__title">
                         <svg
@@ -92,18 +83,14 @@ const Cart = () => {
                             />
                         </svg>
 
-                        <span onClick={clearCart}>Очистить корзину</span>
+                        <span>Очистить корзину</span>
                     </div>
                 </div>
-
                 <div className="content__items">
                     {cartPizzas.map(pizza => <CartItem
                         pizza={pizza}
                         //@ts-ignore
-                        totalPizzaTypePrice={items[pizza.id].totalCartPrice}
-                        //@ts-ignore
-                        totalPizzaTypeCount={items[pizza.id].items.length}
-                    />)}
+                        totalPizzaTypePrice={items[obj.id].totalCartPrice} />)}
                 </div>
                 <div className="cart__bottom">
                     <div className="cart__bottom-details">
@@ -140,22 +127,22 @@ const Cart = () => {
                     </div>
                 </div>
             </div>
-                :
-                <div className="cart cart--empty ">
-                    <h2>
-                        Корзина пустая <i>😕</i>
-                    </h2>
-                    <p>
-                        Вероятней всего, вы не заказывали ещё пиццу.
-                        <br />
-                        Для того, чтобы заказать пиццу, перейди на главную страницу.
-                    </p>
-                    <img src={emptyCartImg} alt="Empty cart" />
-                    <Link to='/' className="button button--black">
-                        <span>Вернуться назад</span>
-                    </Link>
-                </div>
-            }
+            ) : (
+            <div className="cart cart--empty">
+                <h2>
+                    Корзина пустая <i>😕</i>
+                </h2>
+                <p>
+                    Вероятней всего, вы не заказывали ещё пиццу.
+                    <br />
+                    Для того, чтобы заказать пиццу, перейди на главную страницу.
+                </p>
+                <img alt="Empty cart" />
+
+                <span>Вернуться назад</span>
+
+            </div>
+
         </div>
     )
 }

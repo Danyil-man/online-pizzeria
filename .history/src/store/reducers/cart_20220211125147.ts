@@ -4,7 +4,6 @@ import { AppStateType, InfernActionType } from "../reduxStore"
 
 const ADD_PIZZA_CART = "ADD_PIZZA_CART"
 const CLEAR_CART = "CLEAR_CART"
-const REMOVE_CART_ITEM = "REMOVE_CART_ITEM"
 
 export type PizzaType = {
     id: number,
@@ -90,9 +89,6 @@ export const actions = {
     } as const),
     clearCart: () => ({
         type: CLEAR_CART,
-    } as const),
-    removeCartItem: () => ({
-        type: REMOVE_CART_ITEM
     } as const)
 }
 
