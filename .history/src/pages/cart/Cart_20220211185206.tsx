@@ -111,7 +111,6 @@ const Cart = () => {
 
                 <div className="content__items">
                     {cartPizzas.map(pizza => <CartItem
-                        key={pizza.id}
                         pizza={pizza}
                         //@ts-ignore
                         totalPizzaTypePrice={items[pizza.id].totalCartPrice}
@@ -147,16 +146,12 @@ const Cart = () => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            <Link to='/'>
-                                <span>Вернуться назад</span>
-                            </Link>
 
+                            <span>Вернуться назад</span>
 
                         </a>
-                        <button className="button pay-btn" onClick={onCLickOrder}>
-                            <span>Оплатить сейчас</span>
-                        </button>
 
+                        <span className="pay-btn" onClick={onCLickOrder}>Оплатить сейчас</span>
 
                     </div>
                 </div>

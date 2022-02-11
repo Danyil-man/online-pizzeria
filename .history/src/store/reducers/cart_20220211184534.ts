@@ -138,13 +138,10 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
             //@ts-ignore
             const newObjItems  = oldItems.length >1 ? state.items[action.id].items.slice(1):oldItems
             const newItems ={
-                ...state.items,
-                [action.id]: {
-                    items: newObjItems,
-                    totalCartPrice: newObjItems.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
-                }
-                
+                ...state,
+                items: newObjItems,
+                totalCount: totalCount,
+                totalPrice: price
             }
             const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
             //@ts-ignore

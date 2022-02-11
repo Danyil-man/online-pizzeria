@@ -5,8 +5,6 @@ import { AppStateType, InfernActionType } from "../reduxStore"
 const ADD_PIZZA_CART = "ADD_PIZZA_CART"
 const CLEAR_CART = "CLEAR_CART"
 const REMOVE_CART_ITEM = "REMOVE_CART_ITEM"
-const PLUS_CART_ITEM = "PLUS_CART_ITEM"
-const MINUS_CART_ITEM = "MINUS_CART_ITEM"
 
 export type PizzaType = {
     id: number,
@@ -54,24 +52,19 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
                 ...state.items,
                 [action.pizzaObj.id]: {
                     items: currentPizzas,
-                    totalCartPrice: currentPizzas.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
+                    totalCartPrice: currentPizzas.reduce((sum, obj:PizzaCartType)=>obj.price + sum,0)
                 }
             }
-            
-           
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
             //@ts-ignore
-            newItems[key].items.length + sum, 0)
-
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
+            const items =  Object.values(newItems).map(obj => obj.items)
             //@ts-ignore
-             newItems[key].totalCartPrice + sum, 0)
+            const pizzaArray = [].concat.apply([], items)
+            const price = pizzaArray.reduce( (sum, obj:PizzaCartType) => obj.price + sum, 0)
             
             return {
                 ...state,
                 items: newItems,
-                totalCount: totalCount,
+                totalCount: pizzaArray.length,
                 totalPrice: price
             }
         }
@@ -100,69 +93,6 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
                 totalPrice: state.totalPrice - currentTotalPrice,
                 totalCount: state.totalCount - currentTotalCount
             }
-
-        case PLUS_CART_ITEM:{
-            const newObjItems  = [
-                //@ts-ignore
-                ...state.items[action.id].items,
-                //@ts-ignore
-                state.items[action.id].items[0]
-            ]
-            const newItems = {
-                ...state.items,
-                [action.id]: {
-                    items:newObjItems,
-                    totalCartPrice: newObjItems.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
-                }
-            }
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-            newItems[key].items.length + sum, 0)
-
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-             newItems[key].totalCartPrice + sum, 0)
-            return{
-                ...state,
-                items: newItems,
-                totalCount: totalCount,
-                totalPrice: price
-            }
-        }
-           
-
-        case MINUS_CART_ITEM:{
-            //@ts-ignore
-            const oldItems = state.items[action.id].items
-            //@ts-ignore
-            const newObjItems  = oldItems.length >1 ? state.items[action.id].items.slice(1):oldItems
-            const newItems ={
-                ...state.items,
-                [action.id]: {
-                    items: newObjItems,
-                    totalCartPrice: newObjItems.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
-                }
-                
-            }
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-            newItems[key].items.length + sum, 0)
-
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-             newItems[key].totalCartPrice + sum, 0)  
-            
-            
-            return {
-                ...state,
-                items: newItems,
-                totalCount: totalCount,
-                totalPrice: price,
-              };
-            }
-               
         default:
             return state
     }
@@ -181,14 +111,6 @@ export const actions = {
     removeCartItem: (id:number) => ({
         type: REMOVE_CART_ITEM,
         id
-    } as const),
-    plusCartItem: (id:number) => ({
-        type: PLUS_CART_ITEM,
-        id
-    } as const),
-    minusCartItem: (id:number) => ({
-        type: MINUS_CART_ITEM,
-        id
     } as const)
 }
 
@@ -204,14 +126,6 @@ export const onClearCart = ():ThunkType => async (dispatch) => {
 
 export const onRemoveItem = (id:number):ThunkType => async (dispatch) => {
     dispatch(actions.removeCartItem(id))
-}
-
-export const plusCartItem = (id:number):ThunkType => async (dispatch) => {
-    dispatch(actions.plusCartItem(id))
-}
-
-export const minusCartItem = (id:number):ThunkType => async (dispatch) => {
-    dispatch(actions.minusCartItem(id))
 }
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionCreatorsType>
 type ActionCreatorsType = InfernActionType<typeof actions>

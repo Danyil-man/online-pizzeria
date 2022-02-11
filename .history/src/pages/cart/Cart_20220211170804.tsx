@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { minusCartItem, onClearCart, onRemoveItem, plusCartItem } from "../../store/reducers/cart";
+import { onClearCart, onRemoveItem } from "../../store/reducers/cart";
 import { AppStateType } from "../../store/reduxStore";
 import CartItem from "./cartItem/CartItem";
 import emptyCartImg from '../../assets/img/empty-cart.png'
@@ -21,17 +21,7 @@ const Cart = () => {
             dispatch(onClearCart())
     }
     const removeItem = (id: number) => {
-        if (window.confirm('Are you sure you want to remove these pizzas?'))
-            dispatch(onRemoveItem(id))
-    }
-    const onPlusCartItem = (id: number) => {
-        dispatch(plusCartItem(id))
-    }
-    const onMinusCartItem = (id: number) => {
-        dispatch(minusCartItem(id))
-    }
-    const onCLickOrder = () => {
-        console.log('Order', items)
+        if (window.confirm('Are you sure you want to remove these pizzas?')) onRemoveItem(id)
     }
     return (
         <div className="container container--cart">
@@ -111,15 +101,11 @@ const Cart = () => {
 
                 <div className="content__items">
                     {cartPizzas.map(pizza => <CartItem
-                        key={pizza.id}
                         pizza={pizza}
                         //@ts-ignore
                         totalPizzaTypePrice={items[pizza.id].totalCartPrice}
                         //@ts-ignore
                         totalPizzaTypeCount={items[pizza.id].items.length}
-                        removeItem={removeItem}
-                        onPlusCartItem={onPlusCartItem}
-                        onMinusCartItem={onMinusCartItem}
                     />)}
                 </div>
                 <div className="cart__bottom">
@@ -147,16 +133,12 @@ const Cart = () => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            <Link to='/'>
-                                <span>Вернуться назад</span>
-                            </Link>
 
+                            <span>Вернуться назад</span>
 
                         </a>
-                        <button className="button pay-btn" onClick={onCLickOrder}>
-                            <span>Оплатить сейчас</span>
-                        </button>
 
+                        <span>Оплатить сейчас</span>
 
                     </div>
                 </div>

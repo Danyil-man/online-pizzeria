@@ -54,17 +54,17 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
                 ...state.items,
                 [action.pizzaObj.id]: {
                     items: currentPizzas,
-                    totalCartPrice: currentPizzas.reduce((sum:number, obj:PizzaCartType)=>
+                    totalCartPrice: currentPizzas.reduce((sum, obj:PizzaCartType)=>
                     obj.price + sum,0)
                 }
             }
             
            
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
+            const totalCount = Object.keys(newItems).reduce( (sum:number, key) =>
             //@ts-ignore
             newItems[key].items.length + sum, 0)
 
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
+            const price = Object.keys(newItems).reduce( (sum, key) =>
             //@ts-ignore
              newItems[key].totalCartPrice + sum, 0)
             
@@ -102,65 +102,40 @@ const cartReducer = (state=initialState, action:ActionCreatorsType):initialState
             }
 
         case PLUS_CART_ITEM:{
-            const newObjItems  = [
+            const newItems = [
                 //@ts-ignore
                 ...state.items[action.id].items,
                 //@ts-ignore
                 state.items[action.id].items[0]
             ]
-            const newItems = {
-                ...state.items,
-                [action.id]: {
-                    items:newObjItems,
-                    totalCartPrice: newObjItems.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
-                }
-            }
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-            newItems[key].items.length + sum, 0)
-
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-             newItems[key].totalCartPrice + sum, 0)
             return{
                 ...state,
-                items: newItems,
-                totalCount: totalCount,
-                totalPrice: price
+                items: {
+                    ...state.items,
+                    [action.id]: {
+                        items:newItems,
+                        totalCartPrice: newItems.reduce((sum:number, obj:PizzaCartType)=>
+                        obj.price + sum,0)
+                    }
+                }
             }
         }
            
 
         case MINUS_CART_ITEM:{
             //@ts-ignore
-            const oldItems = state.items[action.id].items
-            //@ts-ignore
-            const newObjItems  = oldItems.length >1 ? state.items[action.id].items.slice(1):oldItems
-            const newItems ={
-                ...state.items,
-                [action.id]: {
-                    items: newObjItems,
-                    totalCartPrice: newObjItems.reduce((sum:number, obj:PizzaCartType)=>
-                    obj.price + sum,0)
+            const newItems = state.items[action.id].items.slice(1)
+                return{
+                    ...state,
+                    items: {
+                        ...state.items,
+                        [action.id]: {
+                            items:newItems,
+                            totalCartPrice: newItems.reduce((sum:number, obj:PizzaCartType)=>
+                            obj.price + sum,0)
+                        }
+                    }
                 }
-                
-            }
-            const totalCount = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-            newItems[key].items.length + sum, 0)
-
-            const price = Object.keys(newItems).reduce( (sum:number, key:any) =>
-            //@ts-ignore
-             newItems[key].totalCartPrice + sum, 0)  
-            
-            
-            return {
-                ...state,
-                items: newItems,
-                totalCount: totalCount,
-                totalPrice: price,
-              };
             }
                
         default:

@@ -30,9 +30,6 @@ const Cart = () => {
     const onMinusCartItem = (id: number) => {
         dispatch(minusCartItem(id))
     }
-    const onCLickOrder = () => {
-        console.log('Order', items)
-    }
     return (
         <div className="container container--cart">
             {totalCount ? <div className="cart">
@@ -111,7 +108,6 @@ const Cart = () => {
 
                 <div className="content__items">
                     {cartPizzas.map(pizza => <CartItem
-                        key={pizza.id}
                         pizza={pizza}
                         //@ts-ignore
                         totalPizzaTypePrice={items[pizza.id].totalCartPrice}
@@ -147,16 +143,12 @@ const Cart = () => {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                            <Link to='/'>
-                                <span>Вернуться назад</span>
-                            </Link>
 
+                            <span>Вернуться назад</span>
 
                         </a>
-                        <button className="button pay-btn" onClick={onCLickOrder}>
-                            <span>Оплатить сейчас</span>
-                        </button>
 
+                        <span>Оплатить сейчас</span>
 
                     </div>
                 </div>

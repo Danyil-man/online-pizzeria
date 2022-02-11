@@ -111,7 +111,6 @@ const Cart = () => {
 
                 <div className="content__items">
                     {cartPizzas.map(pizza => <CartItem
-                        key={pizza.id}
                         pizza={pizza}
                         //@ts-ignore
                         totalPizzaTypePrice={items[pizza.id].totalCartPrice}
@@ -153,7 +152,7 @@ const Cart = () => {
 
 
                         </a>
-                        <button className="button pay-btn" onClick={onCLickOrder}>
+                        <button className="pay-btn" onClick={onCLickOrder}>
                             <span>Оплатить сейчас</span>
                         </button>
 

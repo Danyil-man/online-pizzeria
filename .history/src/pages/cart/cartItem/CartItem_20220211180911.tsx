@@ -10,9 +10,7 @@ type CartItemType = {
     onMinusCartItem: (id: number) => void
 }
 
-const CartItem: FC<CartItemType> = ({ pizza, totalPizzaTypePrice,
-    totalPizzaTypeCount, removeItem,
-    onPlusCartItem, onMinusCartItem }) => {
+const CartItem: FC<CartItemType> = ({ pizza, totalPizzaTypePrice, totalPizzaTypeCount, removeItem }) => {
 
     return (
         <div className="cart__item">
@@ -30,10 +28,9 @@ const CartItem: FC<CartItemType> = ({ pizza, totalPizzaTypePrice,
                 </p>
             </div>
             <div className="cart__item-count">
-                <div onClick={() => onMinusCartItem(pizza.id)}
+                <div
                     className="button button--outline button--circle cart__item-count-minus">
                     <svg
-
                         width="10"
                         height="10"
                         viewBox="0 0 10 10"
@@ -50,10 +47,8 @@ const CartItem: FC<CartItemType> = ({ pizza, totalPizzaTypePrice,
                     </svg>
                 </div>
                 <b>{totalPizzaTypeCount}</b>
-                <div onClick={() => onPlusCartItem(pizza.id)}
-                    className="button button--outline button--circle cart__item-count-plus">
+                <div className="button button--outline button--circle cart__item-count-plus">
                     <svg
-
                         width="10"
                         height="10"
                         viewBox="0 0 10 10"
