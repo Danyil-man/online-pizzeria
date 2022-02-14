@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/online-pizzeria/static/css/main.389eec7b.css",
-    "main.js": "/online-pizzeria/static/js/main.30636ccf.js",
+    "main.js": "/online-pizzeria/static/js/main.c786f06b.js",
     "static/js/787.44c24075.chunk.js": "/online-pizzeria/static/js/787.44c24075.chunk.js",
     "static/media/ProximaNova-Regular.eot": "/online-pizzeria/static/media/ProximaNova-Regular.d97f8f32c098b28c3ab0.eot",
     "static/media/ProximaNova-Regular.ttf": "/online-pizzeria/static/media/ProximaNova-Regular.b078618b41b9b6629ea0.ttf",
@@ -19,11 +19,11 @@
     "static/media/pizza-logo.svg": "/online-pizzeria/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg",
     "index.html": "/online-pizzeria/index.html",
     "main.389eec7b.css.map": "/online-pizzeria/static/css/main.389eec7b.css.map",
-    "main.30636ccf.js.map": "/online-pizzeria/static/js/main.30636ccf.js.map",
+    "main.c786f06b.js.map": "/online-pizzeria/static/js/main.c786f06b.js.map",
     "787.44c24075.chunk.js.map": "/online-pizzeria/static/js/787.44c24075.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.389eec7b.css",
-    "static/js/main.30636ccf.js"
+    "static/js/main.c786f06b.js"
   ]
 }
