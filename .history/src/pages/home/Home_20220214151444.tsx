@@ -13,7 +13,7 @@ type HomeType = {
     pizzas: Array<PizzaType>
 }
 
-const categoryNames = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']
+const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 const sortItems = [
     { name: 'popular', type: 'popular', order: 'desc' },
     { name: 'price', type: 'price', order: 'desc' },

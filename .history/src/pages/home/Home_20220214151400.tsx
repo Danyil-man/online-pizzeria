@@ -13,7 +13,7 @@ type HomeType = {
     pizzas: Array<PizzaType>
 }
 
-const categoryNames = ['Meat', 'Vegetarian', 'Grill', 'Spicy', 'Closed']
+const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 const sortItems = [
     { name: 'popular', type: 'popular', order: 'desc' },
     { name: 'price', type: 'price', order: 'desc' },
@@ -57,7 +57,7 @@ const Home: FC<HomeType> = () => {
                         setActiveItem={onSelectSort}
                     />
                 </div>
-                <h2 className="content__title">All pizzas</h2>
+                <h2 className="content__title">Все пиццы</h2>
                 <div className="content__items">
                     {isLoaded ?
                         pizzas.map(pizza => <PizzaItem

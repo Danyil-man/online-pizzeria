@@ -76,7 +76,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                             fill="white"
                         />
                     </svg>
-                    <span>Add</span>
+                    <span>Добавить</span>
                     {cartCount && <i>{cartCount}</i>}
                 </button>
             </div>

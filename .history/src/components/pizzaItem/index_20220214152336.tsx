@@ -58,7 +58,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                             onClick={() => onSelectSize(index)}
                             className={`${activeSize === index ? 'active' : ''}
                             ${!pizza.sizes.includes(size) && 'disabled'}`}
-                        >{size} cm.</li>)}
+                        >{size} см.</li>)}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
@@ -76,7 +76,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                             fill="white"
                         />
                     </svg>
-                    <span>Add</span>
+                    <span>Добавить</span>
                     {cartCount && <i>{cartCount}</i>}
                 </button>
             </div>

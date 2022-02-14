@@ -26,8 +26,8 @@ const Sort: FC<SortType> = ({ items, activeSort, setActiveItem }) => {
         }
     }
 
-    const onSelectItem = (type: any) => {
-        setActiveItem(type)
+    const onSelectItem = (index: any) => {
+        setActiveItem(index)
         setSort(false)
     }
 

@@ -12,7 +12,7 @@ const Header = () => {
                         <img width="38" src={logo} alt="Pizza logo" />
                         <div>
                             <h1>React Pizza</h1>
-                            <p>The most delicious pizza in the World</p>
+                            <p>the most delicious pizza in the world</p>
                         </div>
                     </div>
                 </Link>
