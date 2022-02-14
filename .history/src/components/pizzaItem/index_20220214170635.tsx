@@ -62,7 +62,7 @@ const PizzaItem: FC<PizzaItemType> = ({ pizza, cartCount, onAddPizza }) => {
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">from {pizza.price}$</div>
+                <div className="pizza-block__price">from {pizza.price} $</div>
                 <button onClick={addPiza} className="button button--outline button--add">
                     <svg
                         width="12"

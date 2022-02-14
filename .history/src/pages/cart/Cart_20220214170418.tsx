@@ -148,13 +148,13 @@ const Cart = () => {
                                 />
                             </svg>
                             <Link to='/'>
-                                <span>Back</span>
+                                <span>Вернуться назад</span>
                             </Link>
 
 
                         </a>
                         <button className="button pay-btn" onClick={onCLickOrder}>
-                            <span>Pay now</span>
+                            <span>Оплатить сейчас</span>
                         </button>
 
 
@@ -164,16 +164,16 @@ const Cart = () => {
                 :
                 <div className="cart cart--empty ">
                     <h2>
-                        Cart is empty <i>😕</i>
+                        Корзина пустая <i>😕</i>
                     </h2>
                     <p>
-                        You probably haven't ordered pizza yet.
+                        Вероятней всего, вы не заказывали ещё пиццу.
                         <br />
-                        To order pizza, go to the main page.
+                        Для того, чтобы заказать пиццу, перейди на главную страницу.
                     </p>
                     <img src={emptyCartImg} alt="Empty cart" />
                     <Link to='/' className="button button--black">
-                        <span>Back</span>
+                        <span>Вернуться назад</span>
                     </Link>
                 </div>
             }

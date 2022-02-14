@@ -26,7 +26,7 @@ const CartItem: FC<CartItemType> = ({ pizza, totalPizzaTypePrice,
             <div className="cart__item-info">
                 <h3>{pizza.name}</h3>
                 <p>
-                    {pizza.type} dough, {pizza.size} cm.
+                    {pizza.type} тесто, {pizza.size} см.
                 </p>
             </div>
             <div className="cart__item-count">

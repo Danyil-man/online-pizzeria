@@ -169,11 +169,11 @@ const Cart = () => {
                     <p>
                         You probably haven't ordered pizza yet.
                         <br />
-                        To order pizza, go to the main page.
+                        Для того, чтобы заказать пиццу, перейди на главную страницу.
                     </p>
                     <img src={emptyCartImg} alt="Empty cart" />
                     <Link to='/' className="button button--black">
-                        <span>Back</span>
+                        <span>Вернуться назад</span>
                     </Link>
                 </div>
             }
